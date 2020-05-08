@@ -1,8 +1,11 @@
 import express from 'express';
-import { testEnvironmentalVariable } from '../settings';
+import { indexPage, messagesPage, addMessage } from '../controllers';
+import { modifyMessage } from '../middleware';
 
 const indexRouter = express.Router();
 
-indexRouter.get('/', (req, res) => res.status(200).json({ message: testEnvironmentalVariable }));
+indexRouter.get('/', indexPage);
+indexRouter.get('/messages', messagesPage);
+indexRouter.post('/messages', modifyMessage, addMessage);
 
 export default indexRouter;
